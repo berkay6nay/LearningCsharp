@@ -63,24 +63,15 @@ namespace Okul
 			Ogretmen ogretmen4 = new Ogretmen("Prof." , "Hüseyin" , "Türk");
 			Ogretmen ogretmen5 = new Ogretmen("Prof." , "Fatih" , "Altın");
 
-
 			dersler[0].setOgretmen(ogretmen1);
 			dersler[1].setOgretmen(ogretmen2);
 			dersler[2].setOgretmen(ogretmen3);
-			
-			
-
 			
 			foreach(Ders ders in dersler)
 			{
 				ders.setOgrenciler(Ogrenci.rastgele10Ogrenci(ogrenciIsımleri, ogrenciSoyIsimleri));
 			}
 			
-			/*for(int i = 0; i< 3; i++) 
-				{
-					Console.WriteLine(dersler[i]);
-				}*/
-
 			foreach(Ders ders in dersler)
 			{
 				if(ders.getOgretmen() != null)
@@ -94,7 +85,9 @@ namespace Okul
 
 			//dersler[0].dropOgrenci(5);
 
-            Console.WriteLine("----------------------------------------------------");
+			Console.WriteLine("----------------------------------------------------");
+			Console.WriteLine("----------------------------------------------------");
+			Console.WriteLine("----------------------------------------------------");
 
             foreach (Ders ders in dersler)
 			{
@@ -106,7 +99,6 @@ namespace Okul
 
 			Console.ReadKey();
 
-			
 		}
 	}
 }

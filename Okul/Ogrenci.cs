@@ -40,7 +40,7 @@ namespace Okul
         }
 		public override string ToString()
 		{
-            return $"Ogrenci Bilgileri : Ad : {ad} --- Soyad: {soyad} ---- Sinif : {sinif} \n ";
+            return $"Ogrenci Bilgileri : Ad : {ad} --- Soyad: {soyad}----- No: {no} ---- Sinif : {sinif} \n ";
 		}
 	}
 }
