@@ -44,6 +44,10 @@ namespace OkulCozum
 			++index;
             Console.WriteLine($"{o.No} numarali ogrenci derse eklendi");
         }
+		public override string ToString()
+		{
+			return $"{Kod} {Ad} {Kredi} \n";
+		}
 
 		public void dersListesiYazdir()
 		{

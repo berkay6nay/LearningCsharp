@@ -6,29 +6,46 @@ using System.Threading.Tasks;
 
 namespace OkulCozum
 {
-	internal class Ogrenci
+	internal class Ogrenci: Kisi
 	{
 		int no;
-		string ad;
-		string soyad;
 		int sinif;
+		Ogretmen ogretmen;
+		Ders[] dersler;
 
-		public Ogrenci(int no, string ad, string soyad, int sinif)
+		public Ogrenci(int no, string ad, string soyad, int sinif) :base(ad, soyad) 
 		{
 			this.no = no;
-			this.ad = ad;
-			this.soyad = soyad;
 			this.sinif = sinif;
+			this.Ogretmen = ogretmen;
 		}
-
 		public int No { get => no; set => no = value; }
-		public string Ad { get => ad; set => ad = value; }
-		public string Soyad { get => soyad; set => soyad = value; }
 		public int Sinif { get => sinif; set => sinif = value; }
+		internal Ogretmen Ogretmen { get => ogretmen; set => ogretmen = value; }
+		internal Ders[] Dersler { get => dersler; set => dersler = value; }
 
 		public override string ToString()
 		{
-			return $"{No}   {Ad}    {Soyad}";
+			return $"{No}   {Ad}    {Soyad} \n";
+		}
+
+		public void alinanDersleriListele()
+		{
+			Console.WriteLine($"{No} numaralı ogrencinin aldığı dersler: ");
+			if (dersler == null)
+			{
+                Console.WriteLine("Ogrenci herhangi bir ders almamaktadır");
+            }
+			else
+			{
+                
+                foreach (Ders ders in dersler){
+					Console.WriteLine(ders);
+				}
+						
+
+				
+			}
 		}
 	}
 }

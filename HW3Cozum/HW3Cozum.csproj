@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0399CF54-A5CD-436A-A459-C79BC5CC1599}</ProjectGuid>
+    <ProjectGuid>{8960D214-D9A5-4036-A410-14EC2EBF6A69}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OkulCozum</RootNamespace>
-    <AssemblyName>OkulCozum</AssemblyName>
+    <RootNamespace>HW3Cozum</RootNamespace>
+    <AssemblyName>HW3Cozum</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,7 +46,7 @@
     <Compile Include="Ders.cs" />
     <Compile Include="Kisi.cs" />
     <Compile Include="Ogrenci.cs" />
-    <Compile Include="Ogretmen.cs" />
+    <Compile Include="OgretimUyesi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

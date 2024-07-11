@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0399CF54-A5CD-436A-A459-C79BC5CC1599}</ProjectGuid>
+    <ProjectGuid>{629FAE2F-8D70-47F7-A004-1E4F0A85EE94}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OkulCozum</RootNamespace>
-    <AssemblyName>OkulCozum</AssemblyName>
+    <RootNamespace>NTierArchHw</RootNamespace>
+    <AssemblyName>NTierArchHw</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,15 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ders.cs" />
-    <Compile Include="Kisi.cs" />
-    <Compile Include="Ogrenci.cs" />
-    <Compile Include="Ogretmen.cs" />
+    <Compile Include="BLL\BLLOgrenci.cs" />
+    <Compile Include="BLL\BLLOgretimElemani.cs" />
+    <Compile Include="Entity\EOgrenci.cs" />
+    <Compile Include="Entity\EOgretimElemanı.cs" />
+    <Compile Include="Facade\Connection.cs" />
+    <Compile Include="Facade\FDers.cs" />
+    <Compile Include="Facade\FOgrenci.cs" />
+    <Compile Include="Facade\FOgretimElemani.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

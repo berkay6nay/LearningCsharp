@@ -6,24 +6,54 @@ using System.Threading.Tasks;
 
 namespace OkulCozum
 {
-	internal class Ogretmen
+	internal class Ogretmen : Kisi
 	{
-		string unvan,ad,soyad;
+		string unvan;
+		Ogrenci[] ogrenciler;
+		Ders[] dersler;
 
-		public Ogretmen(string unvan, string ad, string soyad)
+		public Ogretmen(string unvan, string ad, string soyad) : base(ad, soyad)
 		{
 			this.unvan = unvan;
-			this.ad = ad;
-			this.soyad = soyad;
 		}
 
 		public string Unvan { get => unvan; set => unvan = value; }
-		public string Ad { get => ad; set => ad = value; }
-		public string Soyad { get => soyad; set => soyad = value; }
+		internal Ogrenci[] Ogrenciler { get => ogrenciler; set => ogrenciler = value; }
+		internal Ders[] Dersler { get => dersler; set => dersler = value; }
 
 		public override string ToString()
 		{
 			return $"{Unvan}  {Ad}  {Soyad}";
+		}
+		public void verilenDersleriListele()
+		{
+            Console.WriteLine($"{Ad} isimli ogretmenin verdigi dersler: ");
+            if (dersler == null)
+			{
+                Console.WriteLine($"{Unvan} {Ad} {Soyad} herhangi bir ders vermemektedir");
+            }
+			else
+			{
+				foreach(Ders ders in dersler)
+				{
+					Console.WriteLine(ders);
+				}
+			}
+		}
+		public void danismanlikYapilanOgrencileriListele()
+		{
+            Console.WriteLine($"{Ad} isimli ogretmenin danışmanlık yaptığı ogrenciler: ");
+            if (ogrenciler == null)
+			{
+                Console.WriteLine("Ogretmen herhangi bir ogrenciye danısmanlık vermemektedir");
+            }
+			else {
+
+				foreach(Ogrenci ogrenci in ogrenciler)
+				{
+					Console.WriteLine(ogrenci);
+				}
+			}
 		}
 	}
 }
