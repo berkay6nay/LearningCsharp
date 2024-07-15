@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DERSLERModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="dersID" />
+          </Key>
+          <Property Name="dersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dersAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogretmenID" Type="int" />
+        </EntityType>
+        <EntityType Name="Derskaydi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciID" Type="int" />
+          <Property Name="dersID" Type="int" />
+          <Property Name="dersKayitTarihi" Type="date" Nullable="false" />
+          <Property Name="durum" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="ogrenciID" />
+          </Key>
+          <Property Name="ogrenciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ogrenciSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OgretimElemani">
+          <Key>
+            <PropertyRef Name="ogretimElemaniID" />
+          </Key>
+          <Property Name="ogretimElemaniID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogretimElemaniAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogretimElemaniSoyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="unvan" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DERSLER.dbo.DersListesiRaporla' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DersListesiRaporla">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+            <PropertyRef Name="ogrenciAdi" />
+            <PropertyRef Name="ogrenciSoyadi" />
+            <PropertyRef Name="dersID" />
+          </Key>
+          <Property Name="OgrenciNo" Type="int" Nullable="false" />
+          <Property Name="ogrenciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ogrenciSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dersID" Type="int" Nullable="false" />
+          <Property Name="dersAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogretimElemaniAdi" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogretimElemaniSoyadi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Ders__ogretmenID__398D8EEE">
+          <End Role="OgretimElemani" Type="Self.OgretimElemani" Multiplicity="0..1" />
+          <End Role="Ders" Type="Self.Ders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgretimElemani">
+              <PropertyRef Name="ogretimElemaniID" />
+            </Principal>
+            <Dependent Role="Ders">
+              <PropertyRef Name="ogretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Derskaydi__dersI__45F365D3">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+          <End Role="Derskaydi" Type="Self.Derskaydi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="dersID" />
+            </Principal>
+            <Dependent Role="Derskaydi">
+              <PropertyRef Name="dersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Derskaydi__ogren__44FF419A">
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+          <End Role="Derskaydi" Type="Self.Derskaydi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="ogrenciID" />
+            </Principal>
+            <Dependent Role="Derskaydi">
+              <PropertyRef Name="ogrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DERSLERModelStoreContainer">
+          <EntitySet Name="Ders" EntityType="Self.Ders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Derskaydi" EntityType="Self.Derskaydi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OgretimElemani" EntityType="Self.OgretimElemani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DersListesiRaporla" EntityType="Self.DersListesiRaporla" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DersListesiRaporla].[OgrenciNo] AS [OgrenciNo], 
+    [DersListesiRaporla].[ogrenciAdi] AS [ogrenciAdi], 
+    [DersListesiRaporla].[ogrenciSoyadi] AS [ogrenciSoyadi], 
+    [DersListesiRaporla].[dersID] AS [dersID], 
+    [DersListesiRaporla].[dersAdi] AS [dersAdi], 
+    [DersListesiRaporla].[ogretimElemaniAdi] AS [ogretimElemaniAdi], 
+    [DersListesiRaporla].[ogretimElemaniSoyadi] AS [ogretimElemaniSoyadi]
+    FROM [dbo].[DersListesiRaporla] AS [DersListesiRaporla]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Ders__ogretmenID__398D8EEE" Association="Self.FK__Ders__ogretmenID__398D8EEE">
+            <End Role="OgretimElemani" EntitySet="OgretimElemani" />
+            <End Role="Ders" EntitySet="Ders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Derskaydi__dersI__45F365D3" Association="Self.FK__Derskaydi__dersI__45F365D3">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="Derskaydi" EntitySet="Derskaydi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Derskaydi__ogren__44FF419A" Association="Self.FK__Derskaydi__ogren__44FF419A">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="Derskaydi" EntitySet="Derskaydi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DERSLERModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ders">
+          <Key>
+            <PropertyRef Name="dersID" />
+          </Key>
+          <Property Name="dersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dersAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogretmenID" Type="Int32" />
+          <NavigationProperty Name="OgretimElemani" Relationship="Self.FK__Ders__ogretmenID__398D8EEE" FromRole="Ders" ToRole="OgretimElemani" />
+          <NavigationProperty Name="Derskaydi" Relationship="Self.FK__Derskaydi__dersI__45F365D3" FromRole="Ders" ToRole="Derskaydi" />
+        </EntityType>
+        <EntityType Name="Derskaydi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciID" Type="Int32" />
+          <Property Name="dersID" Type="Int32" />
+          <Property Name="dersKayitTarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="durum" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ders" Relationship="Self.FK__Derskaydi__dersI__45F365D3" FromRole="Derskaydi" ToRole="Ders" />
+          <NavigationProperty Name="Ogrenci" Relationship="Self.FK__Derskaydi__ogren__44FF419A" FromRole="Derskaydi" ToRole="Ogrenci" />
+        </EntityType>
+        <EntityType Name="Ogrenci">
+          <Key>
+            <PropertyRef Name="ogrenciID" />
+          </Key>
+          <Property Name="ogrenciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ogrenciSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Derskaydi" Relationship="Self.FK__Derskaydi__ogren__44FF419A" FromRole="Ogrenci" ToRole="Derskaydi" />
+        </EntityType>
+        <EntityType Name="OgretimElemani">
+          <Key>
+            <PropertyRef Name="ogretimElemaniID" />
+          </Key>
+          <Property Name="ogretimElemaniID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogretimElemaniAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogretimElemaniSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="unvan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ders" Relationship="Self.FK__Ders__ogretmenID__398D8EEE" FromRole="OgretimElemani" ToRole="Ders" />
+        </EntityType>
+        <EntityType Name="DersListesiRaporla">
+          <Key>
+            <PropertyRef Name="OgrenciNo" />
+            <PropertyRef Name="ogrenciAdi" />
+            <PropertyRef Name="ogrenciSoyadi" />
+            <PropertyRef Name="dersID" />
+          </Key>
+          <Property Name="OgrenciNo" Type="Int32" Nullable="false" />
+          <Property Name="ogrenciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ogrenciSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dersID" Type="Int32" Nullable="false" />
+          <Property Name="dersAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogretimElemaniAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogretimElemaniSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Ders__ogretmenID__398D8EEE">
+          <End Role="OgretimElemani" Type="Self.OgretimElemani" Multiplicity="0..1" />
+          <End Role="Ders" Type="Self.Ders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OgretimElemani">
+              <PropertyRef Name="ogretimElemaniID" />
+            </Principal>
+            <Dependent Role="Ders">
+              <PropertyRef Name="ogretmenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Derskaydi__dersI__45F365D3">
+          <End Role="Ders" Type="Self.Ders" Multiplicity="0..1" />
+          <End Role="Derskaydi" Type="Self.Derskaydi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ders">
+              <PropertyRef Name="dersID" />
+            </Principal>
+            <Dependent Role="Derskaydi">
+              <PropertyRef Name="dersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Derskaydi__ogren__44FF419A">
+          <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+          <End Role="Derskaydi" Type="Self.Derskaydi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ogrenci">
+              <PropertyRef Name="ogrenciID" />
+            </Principal>
+            <Dependent Role="Derskaydi">
+              <PropertyRef Name="ogrenciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DERSLEREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ders" EntityType="Self.Ders" />
+          <EntitySet Name="Derskaydi" EntityType="Self.Derskaydi" />
+          <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" />
+          <EntitySet Name="OgretimElemani" EntityType="Self.OgretimElemani" />
+          <EntitySet Name="DersListesiRaporla" EntityType="Self.DersListesiRaporla" />
+          <AssociationSet Name="FK__Ders__ogretmenID__398D8EEE" Association="Self.FK__Ders__ogretmenID__398D8EEE">
+            <End Role="OgretimElemani" EntitySet="OgretimElemani" />
+            <End Role="Ders" EntitySet="Ders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Derskaydi__dersI__45F365D3" Association="Self.FK__Derskaydi__dersI__45F365D3">
+            <End Role="Ders" EntitySet="Ders" />
+            <End Role="Derskaydi" EntitySet="Derskaydi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Derskaydi__ogren__44FF419A" Association="Self.FK__Derskaydi__ogren__44FF419A">
+            <End Role="Ogrenci" EntitySet="Ogrenci" />
+            <End Role="Derskaydi" EntitySet="Derskaydi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DERSLERModelStoreContainer" CdmEntityContainer="DERSLEREntities">
+          <EntitySetMapping Name="Ders">
+            <EntityTypeMapping TypeName="DERSLERModel.Ders">
+              <MappingFragment StoreEntitySet="Ders">
+                <ScalarProperty Name="dersID" ColumnName="dersID" />
+                <ScalarProperty Name="dersAdi" ColumnName="dersAdi" />
+                <ScalarProperty Name="ogretmenID" ColumnName="ogretmenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Derskaydi">
+            <EntityTypeMapping TypeName="DERSLERModel.Derskaydi">
+              <MappingFragment StoreEntitySet="Derskaydi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ogrenciID" ColumnName="ogrenciID" />
+                <ScalarProperty Name="dersID" ColumnName="dersID" />
+                <ScalarProperty Name="dersKayitTarihi" ColumnName="dersKayitTarihi" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ogrenci">
+            <EntityTypeMapping TypeName="DERSLERModel.Ogrenci">
+              <MappingFragment StoreEntitySet="Ogrenci">
+                <ScalarProperty Name="ogrenciID" ColumnName="ogrenciID" />
+                <ScalarProperty Name="ogrenciAdi" ColumnName="ogrenciAdi" />
+                <ScalarProperty Name="ogrenciSoyadi" ColumnName="ogrenciSoyadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OgretimElemani">
+            <EntityTypeMapping TypeName="DERSLERModel.OgretimElemani">
+              <MappingFragment StoreEntitySet="OgretimElemani">
+                <ScalarProperty Name="ogretimElemaniID" ColumnName="ogretimElemaniID" />
+                <ScalarProperty Name="ogretimElemaniAdi" ColumnName="ogretimElemaniAdi" />
+                <ScalarProperty Name="ogretimElemaniSoyadi" ColumnName="ogretimElemaniSoyadi" />
+                <ScalarProperty Name="unvan" ColumnName="unvan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DersListesiRaporla">
+            <EntityTypeMapping TypeName="DERSLERModel.DersListesiRaporla">
+              <MappingFragment StoreEntitySet="DersListesiRaporla">
+                <ScalarProperty Name="OgrenciNo" ColumnName="OgrenciNo" />
+                <ScalarProperty Name="ogrenciAdi" ColumnName="ogrenciAdi" />
+                <ScalarProperty Name="ogrenciSoyadi" ColumnName="ogrenciSoyadi" />
+                <ScalarProperty Name="dersID" ColumnName="dersID" />
+                <ScalarProperty Name="dersAdi" ColumnName="dersAdi" />
+                <ScalarProperty Name="ogretimElemaniAdi" ColumnName="ogretimElemaniAdi" />
+                <ScalarProperty Name="ogretimElemaniSoyadi" ColumnName="ogretimElemaniSoyadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

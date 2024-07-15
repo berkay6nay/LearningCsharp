@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTierArchHw", "NTierArchHw\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPSınav1", "OOPSınav1\OOPSınav1.csproj", "{E859CDAD-5492-4267-927F-4087C00E2882}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroEntity", "IntroEntity\IntroEntity.csproj", "{AE7E24A3-5A30-4A3F-8CD1-15B1CC383A62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{E859CDAD-5492-4267-927F-4087C00E2882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E859CDAD-5492-4267-927F-4087C00E2882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E859CDAD-5492-4267-927F-4087C00E2882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7E24A3-5A30-4A3F-8CD1-15B1CC383A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7E24A3-5A30-4A3F-8CD1-15B1CC383A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7E24A3-5A30-4A3F-8CD1-15B1CC383A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7E24A3-5A30-4A3F-8CD1-15B1CC383A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
